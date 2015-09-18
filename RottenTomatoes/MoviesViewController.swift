@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -53,12 +54,21 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func populateMoviesFromBoxOffice() {
         let url = NSURL(string: BOX_OFFICE_URL)
         let request = NSURLRequest(URL: url!)
+        
+        let spinningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        spinningActivity.labelText = "Loading awesome movies for you"
+        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             if let d = data {
                 let object = try! NSJSONSerialization.JSONObjectWithData(d, options: []) as! NSDictionary
                 if let allData = object["movies"] {
                     self.moviesDictionaryArray = allData as? [NSDictionary]
+                    
+                    // reload view with new data
                     self.moviesTableView.reloadData()
+                    
+                    // stop spinning activity after loading view
+                    spinningActivity.hide(true)
                 }
             } else {
                 if let e = error {
