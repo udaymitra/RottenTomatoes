@@ -15,16 +15,29 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let BOX_OFFICE_URL = "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json"
 
     @IBOutlet weak var moviesTableView: UITableView!
-    
     var moviesDictionaryArray:[NSDictionary]?
+    var uiRefreshControl : UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
+        
+        // add refresh control
+        uiRefreshControl = UIRefreshControl()
+        uiRefreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        moviesTableView.addSubview(uiRefreshControl)
         populateMoviesFromBoxOffice()
     }
 
+    func refresh(sender:AnyObject)
+    {
+        self.uiRefreshControl.endRefreshing()
+
+        // Code to refresh table view
+        populateMoviesFromBoxOffice()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
