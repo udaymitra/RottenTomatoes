@@ -16,10 +16,14 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var moviesTableView: UITableView!
     var moviesDictionaryArray:[NSDictionary]?
-    var uiRefreshControl : UIRefreshControl!
-
+    var uiRefreshControl : UIRefreshControl!    
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorViewLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorView.hidden = true
+        
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
@@ -80,20 +84,27 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     // reload view with new data
                     self.moviesTableView.reloadData()
                     
-                    // stop spinning activity after loading view
+                    // stop spinning activity
                     spinningActivity.hide(true)
+                    
+                    self.moviesTableView.hidden = false
+                    self.errorView.hidden = true
                 }
             } else {
                 if let e = error {
                     NSLog("Error: \(e)")
+                    
+                    // stop spinning activity
+                    spinningActivity.hide(true)
+                    
+                    self.moviesTableView.hidden = true
+                    self.errorView.frame.origin.y = self.errorView.frame.height / 2
+                    self.errorView.hidden = false
                 }
             }
         }
     }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = moviesTableView.indexPathForCell(cell)
@@ -101,5 +112,5 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let movieDetailViewController = segue.destinationViewController as! MovieDetaiViewController
         movieDetailViewController.movie = movie
     }
-
+    
 }
