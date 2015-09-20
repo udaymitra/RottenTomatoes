@@ -27,7 +27,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" id="rDF-Sf-C9y">
-                                <rect key="frame" x="0.0" y="62" width="320" height="415"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,15 +108,11 @@
                                     <tabBarItem title="DVDs" image="DVDIcon" id="KWJ-5n-4N4"/>
                                 </items>
                             </tabBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="sib-mS-6FO">
-                                <rect key="frame" x="70" y="485" width="169" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <segments>
-                                    <segment title="List view"/>
-                                    <segment title="Segmented"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </segmentedControl>
+                            <searchBar contentMode="redraw" id="9OZ-Fr-HDg">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -126,6 +122,7 @@
                         <outlet property="errorViewLabel" destination="ryA-uF-aqW" id="AbR-Tx-YUd"/>
                         <outlet property="movieDvdSelectionTabBar" destination="Nx9-Sc-Uzm" id="VNV-gx-EAo"/>
                         <outlet property="moviesTableView" destination="rDF-Sf-C9y" id="y5H-3F-EfJ"/>
+                        <outlet property="searchBar" destination="9OZ-Fr-HDg" id="Ww0-ZU-Mpm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
