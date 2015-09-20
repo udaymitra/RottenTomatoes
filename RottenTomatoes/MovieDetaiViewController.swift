@@ -13,6 +13,10 @@ class MovieDetaiViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
+    @IBOutlet weak var criticScoreLabel: UILabel!
+    @IBOutlet weak var userScoreLabel: UILabel!
+    @IBOutlet weak var mpaaRatingLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
     
     var movie: NSDictionary?
     
@@ -20,6 +24,19 @@ class MovieDetaiViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = movie!["title"] as? String
         synopsisLabel.text = movie!["synopsis"] as? String
+        let criticScoreInt = movie?.valueForKeyPath("ratings.critics_score") as! Int
+        criticScoreLabel.text = "\(criticScoreInt)%"
+        let audienceScoreInt = movie?.valueForKeyPath("ratings.audience_score") as! Int
+        userScoreLabel.text = "\(audienceScoreInt)%"
+        mpaaRatingLabel.text = movie!["mpaa_rating"] as? String
+        let runTimeMin = movie!["runtime"] as! Int
+        let min = runTimeMin % 60;
+        let hour = (runTimeMin / 60) as Int;
+        let runtimeString = (min > 0)
+            ? "\(hour) hr. \(min) min."
+            : "\(hour) hr."
+        runtimeLabel.text = runtimeString
+        
         var posterUrl = movie?.valueForKeyPath("posters.detailed") as! String
         let range = posterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
         if let range = range {
