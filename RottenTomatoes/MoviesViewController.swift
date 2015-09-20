@@ -10,15 +10,17 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     
     let BOX_OFFICE_URL = "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json"
+    let TOP_DVD_URL = "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json"
 
     @IBOutlet weak var moviesTableView: UITableView!
     var moviesDictionaryArray:[NSDictionary]?
     var uiRefreshControl : UIRefreshControl!    
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorViewLabel: UILabel!
+    @IBOutlet weak var movieDvdSelectionTabBar: UITabBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,15 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
+        movieDvdSelectionTabBar.delegate = self
+        
         // add refresh control
         uiRefreshControl = UIRefreshControl()
         uiRefreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         moviesTableView.addSubview(uiRefreshControl)
-        populateMoviesFromBoxOffice()
+        
+        movieDvdSelectionTabBar.selectedItem = movieDvdSelectionTabBar.items![0]
+        loadData()
     }
 
     func refresh(sender:AnyObject)
@@ -39,7 +45,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.uiRefreshControl.endRefreshing()
 
         // Code to refresh table view
-        populateMoviesFromBoxOffice()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,9 +74,18 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         moviesTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func populateMoviesFromBoxOffice() {
-        let url = NSURL(string: BOX_OFFICE_URL)
-        let request = NSURLRequest(URL: url!)
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        loadData()
+    }
+    
+    func loadData() {
+        var url = BOX_OFFICE_URL
+        self.navigationController?.navigationBar.topItem?.title = "Movies"
+        if (movieDvdSelectionTabBar.selectedItem!.title == "DVDs") {
+            url = TOP_DVD_URL
+            self.navigationController?.navigationBar.topItem?.title = "DVDs"
+        }
+        let request = NSURLRequest(URL: NSURL(string: url)!)
         
         let spinningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         spinningActivity.labelText = "Loading awesome movies for you"
