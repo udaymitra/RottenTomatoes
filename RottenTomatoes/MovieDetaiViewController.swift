@@ -22,28 +22,15 @@ class MovieDetaiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = movie!["title"] as? String
-        synopsisLabel.text = movie!["synopsis"] as? String
-        let criticScoreInt = movie?.valueForKeyPath("ratings.critics_score") as! Int
-        criticScoreLabel.text = "\(criticScoreInt)%"
-        let audienceScoreInt = movie?.valueForKeyPath("ratings.audience_score") as! Int
-        userScoreLabel.text = "\(audienceScoreInt)%"
-        mpaaRatingLabel.text = movie!["mpaa_rating"] as? String
-        let runTimeMin = movie!["runtime"] as! Int
-        let min = runTimeMin % 60;
-        let hour = (runTimeMin / 60) as Int;
-        let runtimeString = (min > 0)
-            ? "\(hour) hr. \(min) min."
-            : "\(hour) hr."
-        runtimeLabel.text = runtimeString
+        let movieHelper = MovieHelper(movie: movie!)
         
-        var posterUrl = movie?.valueForKeyPath("posters.detailed") as! String
-        let range = posterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
-        if let range = range {
-            posterUrl = posterUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
-        }
-        posterImageView.setImageWithURL(NSURL(string: posterUrl)!)
-
+        titleLabel.text = movieHelper.getTitle()
+        synopsisLabel.text = movieHelper.getSynopsis()
+        criticScoreLabel.text = movieHelper.getCriticScoreString()
+        userScoreLabel.text = movieHelper.getAudienceScoreString()
+        mpaaRatingLabel.text = movieHelper.getMpaaRatingString()
+        runtimeLabel.text = movieHelper.getRuntimeString()
+        posterImageView.setImageWithURL(NSURL(string: movieHelper.getPosterUrl())!)
     }
 
     override func didReceiveMemoryWarning() {

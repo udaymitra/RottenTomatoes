@@ -60,13 +60,13 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let movieCell = moviesTableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MoviesTableViewCell
         let thisMovieDict = self.moviesDictionaryArray![indexPath.row]
-        movieCell.movieLabelName.text = thisMovieDict["title"] as? String
-        movieCell.synopsisLabel.text = thisMovieDict["synopsis"] as? String
-        if let posters = thisMovieDict["posters"] as? NSDictionary {
-            let posterImageUrl = posters["thumbnail"] as? String
-            movieCell.thumbnailImageView.setImageWithURL(NSURL(string: posterImageUrl!)!)
-        }
-        
+        let movieHelper = MovieHelper(movie: thisMovieDict)
+        movieCell.movieLabelName.text = movieHelper.getTitle()
+        movieCell.synopsisLabel.text = movieHelper.getSynopsis()
+        movieCell.criticScore.text = movieHelper.getCriticScoreString()
+        movieCell.userScore.text = movieHelper.getAudienceScoreString()
+        movieHelper.getThumbnailUrl()
+        movieCell.thumbnailImageView.setImageWithURL(NSURL(string: movieHelper.getThumbnailUrl())!)
         return movieCell
     }
     
