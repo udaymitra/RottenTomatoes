@@ -30,7 +30,9 @@ class MovieDetaiViewController: UIViewController {
         userScoreLabel.text = movieHelper.getAudienceScoreString()
         mpaaRatingLabel.text = movieHelper.getMpaaRatingString()
         runtimeLabel.text = movieHelper.getRuntimeString()
-        posterImageView.setImageWithURL(NSURL(string: movieHelper.getPosterUrl())!)
+        
+        posterImageView.setImageWithURL(NSURL(string: movieHelper.getThumbnailUrl())!)
+        posterImageView.fadeInImageFromUrl(movieHelper.getPosterUrl(), placeholderImage: posterImageView.image, fadeInDuration: 0.5)
     }
 
     override func didReceiveMemoryWarning() {

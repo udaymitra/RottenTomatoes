@@ -15,6 +15,7 @@
 		04A0DC1F1BABBC2000C39E29 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0DC1E1BABBC2000C39E29 /* MoviesTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		04A0DC211BABD3BF00C39E29 /* MovieDetaiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0DC201BABD3BF00C39E29 /* MovieDetaiViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		04A0DC291BAE856500C39E29 /* MovieHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0DC281BAE856500C39E29 /* MovieHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		04F80C491BAFA72C00D1264E /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F80C481BAFA72C00D1264E /* UIImageViewExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		BB2E7525F6D116F8C3E1D4F4 /* Pods_RottenTomatoes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA2E8F48DC3C4208F745B3 /* Pods_RottenTomatoes.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		04A0DC1E1BABBC2000C39E29 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 		04A0DC201BABD3BF00C39E29 /* MovieDetaiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetaiViewController.swift; sourceTree = "<group>"; };
 		04A0DC281BAE856500C39E29 /* MovieHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHelper.swift; sourceTree = "<group>"; };
+		04F80C481BAFA72C00D1264E /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		1F4F3EC59D7D39949EAA4058 /* Pods-RottenTomatoes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoes/Pods-RottenTomatoes.debug.xcconfig"; sourceTree = "<group>"; };
 		28CA2E8F48DC3C4208F745B3 /* Pods_RottenTomatoes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RottenTomatoes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8676469178191270BAEB4C /* Pods-RottenTomatoes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoes.release.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoes/Pods-RottenTomatoes.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				04A0DC1E1BABBC2000C39E29 /* MoviesTableViewCell.swift */,
 				04A0DC201BABD3BF00C39E29 /* MovieDetaiViewController.swift */,
 				04A0DC281BAE856500C39E29 /* MovieHelper.swift */,
+				04F80C481BAFA72C00D1264E /* UIImageViewExtensions.swift */,
 			);
 			path = RottenTomatoes;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				040A33F51BABB46B00466FB9 /* AppDelegate.swift in Sources */,
 				04A0DC1D1BABB90600C39E29 /* MoviesViewController.swift in Sources */,
 				04A0DC211BABD3BF00C39E29 /* MovieDetaiViewController.swift in Sources */,
+				04F80C491BAFA72C00D1264E /* UIImageViewExtensions.swift in Sources */,
 				04A0DC291BAE856500C39E29 /* MovieHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

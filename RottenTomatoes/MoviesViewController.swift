@@ -68,20 +68,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         movieCell.userScore.text = movieHelper.getAudienceScoreString()
         
         // fade in thumbnail image
-        // ISSUE: images fade in even if they are coming from cache
-        let request = NSURLRequest(URL: NSURL(string: movieHelper.getThumbnailUrl())!)
-        let thumbnailView = movieCell.thumbnailImageView
-        thumbnailView.setImageWithURLRequest(
-            request,
-            placeholderImage: nil,
-            success: { (req, response, image) -> Void in
-                thumbnailView.image = image
-                thumbnailView.alpha = 0
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                        thumbnailView.alpha = 1
-                    })
-                },
-            failure: nil)
+        movieCell.thumbnailImageView.fadeInImageFromUrl(movieHelper.getThumbnailUrl(), placeholderImage: nil, fadeInDuration: 0.5)
         return movieCell
     }
 
@@ -96,7 +83,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func loadData() {
         var url = BOX_OFFICE_URL
-        self.navigationController?.navigationBar.topItem?.title = "Movies"
+        self.navigationController?.navigationBar.topItem?.title = "Box Office"
         if (movieDvdSelectionTabBar.selectedItem!.title == "DVDs") {
             url = TOP_DVD_URL
             self.navigationController?.navigationBar.topItem?.title = "DVDs"
@@ -179,6 +166,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return range != nil
     }
     
+        
     
     
 }
