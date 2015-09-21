@@ -32,7 +32,7 @@ class MovieDetaiViewController: UIViewController {
         runtimeLabel.text = movieHelper.getRuntimeString()
         
         posterImageView.setImageWithURL(NSURL(string: movieHelper.getThumbnailUrl())!)
-        posterImageView.fadeInImageFromUrl(movieHelper.getPosterUrl(), placeholderImage: posterImageView.image, fadeInDuration: 0.5)
+        posterImageView.fadeInImageFromUrl(movieHelper.getPosterUrl(), placeholderImage: posterImageView.image, fadeInDuration: 0.2)
     }
 
     override func didReceiveMemoryWarning() {
