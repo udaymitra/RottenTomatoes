@@ -12,17 +12,17 @@ Here is what I have implemented:
 - Used MBProgressHUD to show loading state while waiting for response from movies API.
 - User sees error message when there's a networking error.
 - User can pull to refresh the movie list.
-- Added a tab bar for Box Office and DVD. [O]
-- Added a search bar. [O]
-- All images fade in. [O]
-- For the large poster, loading the low-res image first, and switching to high-res when complete [O]
-- Customize the navigation bar. [O]
-- Customized the highlight and selection effect of the cell (partly): 
+- Added a tab bar for Box Office and DVD. [Optional]
+- Added a search bar. [Optional]
+- All images fade in. [Optional]
+- For the large poster, loading the low-res image first, and switching to high-res when complete [Optional]
+- Customize the navigation bar. [Optional]
+- Customized the highlight and selection effect of the cell [Optional] (partly): 
   - deselecting the selected cell after punching into detail view
 
 
 Not Implemented yet:
-- Implement segmented control to switch between list view and grid view
+- Implement segmented control to switch between list view and grid view [Optional]
 
 
 I couldnt figure out the following, and appreciate any pointers:
