@@ -29,3 +29,9 @@ I couldnt figure out the following, and appreciate any pointers:
 - How to add pan gesture to movie detail view and show more synopsis.
 - How to change the selected color for UITabBar.
 - I think the fade in effect for pictures is kicking in for pictures in cache as well. How do I debug this?
+
+
+Walkthrough:
+![alt tag](https://github.com/udaymitra/RottenTomatoes/blob/master/walkthrough.gif)
+
+
