@@ -17,7 +17,7 @@ Here is what I have implemented:
 - All images fade in. [Optional]
 - For the large poster, loading the low-res image first, and switching to high-res when complete [Optional]
 - Customize the navigation bar. [Optional]
-- Customized the highlight and selection effect of the cell [Optional] (partly): 
+- Customized the highlight and selection effect of the cell (partly) [Optional] 
   - deselecting the selected cell after punching into detail view
 
 
