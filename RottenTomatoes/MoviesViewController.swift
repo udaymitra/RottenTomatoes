@@ -35,6 +35,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.delegate = self
         
         // add refresh control
+        // ISSUE: background of the view is not the same as table's background color
         uiRefreshControl = UIRefreshControl()
         uiRefreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         moviesTableView.addSubview(uiRefreshControl)
@@ -46,14 +47,11 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func refresh(sender:AnyObject)
     {
         self.uiRefreshControl.endRefreshing()
-
-        // Code to refresh table view
         loadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,10 +66,25 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         movieCell.synopsisLabel.text = movieHelper.getSynopsis()
         movieCell.criticScore.text = movieHelper.getCriticScoreString()
         movieCell.userScore.text = movieHelper.getAudienceScoreString()
-        movieHelper.getThumbnailUrl()
-        movieCell.thumbnailImageView.setImageWithURL(NSURL(string: movieHelper.getThumbnailUrl())!)
+        
+        // fade in thumbnail image
+        // ISSUE: images fade in even if they are coming from cache
+        let request = NSURLRequest(URL: NSURL(string: movieHelper.getThumbnailUrl())!)
+        let thumbnailView = movieCell.thumbnailImageView
+        thumbnailView.setImageWithURLRequest(
+            request,
+            placeholderImage: nil,
+            success: { (req, response, image) -> Void in
+                thumbnailView.image = image
+                thumbnailView.alpha = 0
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                        thumbnailView.alpha = 1
+                    })
+                },
+            failure: nil)
         return movieCell
     }
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         moviesTableView.deselectRowAtIndexPath(indexPath, animated: true)
