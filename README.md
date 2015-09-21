@@ -32,6 +32,7 @@ I couldnt figure out the following, and appreciate any pointers:
 
 
 Walkthrough:
+
 ![alt tag](https://github.com/udaymitra/RottenTomatoes/blob/master/walkthrough.gif)
 
 
